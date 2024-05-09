@@ -10,10 +10,14 @@ class UI:
 
     username = str()
     password = str()
-    def showLogin(self):
+
+    def welcome(self):
         self.clearScreen()
         print("Welcome to the Hostel Management System")
         print("Please login to continue")
+
+
+    def showLogin(self):
         print("Username: ", end="")
         username = input()
         self.username = username
@@ -22,6 +26,8 @@ class UI:
         self.password =  password
 
     def login(self):
+        self.welcome()
+        self.showLogin()
         if self.username == "admin" and self.password == "123":
             self.adminMode()
         else:
@@ -36,6 +42,8 @@ class UI:
             2. Remove Student
             3. View Students
             4. Search Student
+            5. Logout
+            6. Exit
             
             """
         )
@@ -61,3 +69,8 @@ class UI:
         new_student.mother = input("Mother Name: ")
         new_student.email = input("Email: ")
         studentService.addStudent(new_student)
+
+    def removeStudent(self):
+        self.clearScreen()
+        student_id = input("Student ID: ")
+        studentService.removeStudent(student_id)
