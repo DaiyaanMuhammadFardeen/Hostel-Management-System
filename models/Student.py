@@ -4,7 +4,7 @@ import User
 
 
 class Student(User):
-    id = int()
+    id = str()
     name = str()
     contact = str()
     father = str()
