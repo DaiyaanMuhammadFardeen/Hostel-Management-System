@@ -2,14 +2,15 @@ import uuid
 
 
 class User:
-    id = uuid.uuid4()
-    username = str()
-    password = str()
-    role = str()
+    def __init__(self):
+        self.id = uuid.uuid4()
+        self.username = ""
+        self.password = ""
+        self.role = "admin"
 
 
 def get_user_id(self):
-    return self.id
+    return self.student_id
 
 
 def get_user_username(self):

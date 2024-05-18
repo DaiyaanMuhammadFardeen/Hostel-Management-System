@@ -1,9 +1,13 @@
 import os
 
 from models.Student import Student
+from services.AdminService import AdminService
 from services.StudentService import StudentService
 
+adminService = AdminService()
 studentService = StudentService()
+
+
 class UI:
     def clearScreen(self):
         os.system("cls")
@@ -16,14 +20,13 @@ class UI:
         print("Welcome to the Hostel Management System")
         print("Please login to continue")
 
-
     def showLogin(self):
         print("Username: ", end="")
         username = input()
         self.username = username
         print("Password: ", end="")
         password = input()
-        self.password =  password
+        self.password = password
 
     def login(self):
         self.welcome()
@@ -66,30 +69,32 @@ class UI:
         self.clearScreen()
         new_student = Student()
         new_student.name = input("Name: ")
+        new_student.username = input("Username: ")
+        new_student.password = input("Password: ")
+        new_student.student_id = input("StudentID (last 4 digits): ")
         new_student.contact = input("Phone no: ")
         new_student.father = input("Father Name: ")
         new_student.mother = input("Mother Name: ")
         new_student.email = input("Email: ")
-        studentService.addStudent(new_student)
+        adminService.addStudent(new_student)
         self.adminMode()
 
     def removeStudent(self):
         self.clearScreen()
         student_id = input("Student ID: ")
-        studentService.removeStudent(student_id)
+        adminService.removeStudent(student_id)
         self.adminMode()
-
 
     def viewStudents(self):
         self.clearScreen()
-        studentService.viewStudents()
+        adminService.viewStudents()
         self.adminMode()
         pass
 
     def searchStudent(self):
         self.clearScreen()
         student_id = input("Student ID: ")
-        studentService.searchStudent()
+        adminService.searchStudent(student_id)
         self.adminMode()
 
     def studentMode(self):
@@ -107,9 +112,9 @@ class UI:
         choice = int(input("Option:"))
         match choice:
             case 1:
-                self.addStudent()
+                self.seeBalance()
             case 2:
-                self.removeStudent()
+                self.updateProfile()
             case 3:
                 self.logout()
             case 4:
@@ -122,3 +127,15 @@ class UI:
         self.password = None
         self.clearScreen()
         self.login()
+
+    def seeBalance(self):
+        studentService.showBalance(self.username)
+
+    def updateProfile(self):
+        updated_Student = Student()
+        updated_Student.name = input("Updated Name: ")
+        updated_Student.contact = input("Updated Phone no: ")
+        updated_Student.father = input("Updated Father Name: ")
+        updated_Student.mother = input("Updated Mother Name: ")
+        updated_Student.email = input("Updated Email: ")
+        studentService.updateProfile(updated_Student, self.username)

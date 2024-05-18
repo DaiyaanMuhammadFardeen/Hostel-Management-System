@@ -1,12 +1,6 @@
 class StudentService:
-    def addStudent(self, new_student):
-        print("Student Added")
+    def updateProfile(self, updated_Student, username):
+        pass
 
-    def removeStudent(self, student_id):
-        print("Student Removed")
-
-    def viewStudents(self):
-        print("Viewing Students")
-
-    def searchStudent(self):
-        print("Searching Student")
+    def showBalance(self, username):
+        pass

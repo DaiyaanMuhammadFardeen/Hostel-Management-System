@@ -4,10 +4,12 @@ from models.User import User
 
 
 class Student(User):
-    id = str()
-    name = str()
-    contact = str()
-    father = str()
-    mother = str()
-    email = str()
-    user_id = uuid.uuid4()
+    def __init__(self):
+        super().__init__()
+        self.student_id = ""
+        self.name = ""
+        self.contact = ""
+        self.father = ""
+        self.mother = ""
+        self.email = ""
+        self.user_id = self.id
