@@ -1,6 +1,6 @@
 import uuid
 
-import User
+from models.User import User
 
 
 class Student(User):

@@ -36,7 +36,7 @@ class UI:
     def adminMode(self):
         self.clearScreen()
         print(
-            """Welcome {{username}} to Hostel Management Portal.
+            f"""Welcome {self.username} to Hostel Management Portal.
             Please select one of the following options:
             1. Add Student
             2. Remove Student
@@ -57,6 +57,8 @@ class UI:
                 self.viewStudents()
             case 4:
                 self.searchStudent()
+            case 5:
+                self.logout()
             case _:
                 self.adminMode()
 
@@ -69,8 +71,54 @@ class UI:
         new_student.mother = input("Mother Name: ")
         new_student.email = input("Email: ")
         studentService.addStudent(new_student)
+        self.adminMode()
 
     def removeStudent(self):
         self.clearScreen()
         student_id = input("Student ID: ")
         studentService.removeStudent(student_id)
+        self.adminMode()
+
+
+    def viewStudents(self):
+        self.clearScreen()
+        studentService.viewStudents()
+        self.adminMode()
+        pass
+
+    def searchStudent(self):
+        self.clearScreen()
+        student_id = input("Student ID: ")
+        studentService.searchStudent()
+        self.adminMode()
+
+    def studentMode(self):
+        self.clearScreen()
+        print(
+            f"""Welcome {self.username} to Hostel Management Portal.
+            Please select one of the following options:
+            1. See dues
+            2. Update Profile
+            3. Logout
+            4. Exit
+
+            """
+        )
+        choice = int(input("Option:"))
+        match choice:
+            case 1:
+                self.addStudent()
+            case 2:
+                self.removeStudent()
+            case 3:
+                self.logout()
+            case 4:
+                exit()
+            case _:
+                self.studentMode()
+
+    def logout(self):
+        self.username = None
+        self.password = None
+        self.clearScreen()
+        self.login()
