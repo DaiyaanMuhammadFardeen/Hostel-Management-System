@@ -10,7 +10,7 @@ studentService = StudentService()
 
 class UI:
     def clearScreen(self):
-        os.system("cls")
+        os.system("clear")
 
     username = str()
     password = str()
@@ -62,6 +62,8 @@ class UI:
                 self.searchStudent()
             case 5:
                 self.logout()
+            case 6:
+                exit()
             case _:
                 self.adminMode()
 
